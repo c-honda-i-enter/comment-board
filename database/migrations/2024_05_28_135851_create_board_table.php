@@ -12,9 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('board', function (Blueprint $table) {
-            $table->id();
-            $table->string('message');
+            $table->id('message_id');
+            $table->unsignedBigInteger('user_number');
+            $table->string('message', 280);
             $table->timestamps();
+            $table->tinyInteger('delete_flag')->default(0);
+            
+            $table->foreign('user_number')->references('id')->on('users');
         });
     }
 

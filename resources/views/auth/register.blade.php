@@ -11,17 +11,17 @@
             @csrf
 
             <div class="form-control my-4">
-                <label for="name" class="label">
+                <label for="user_name" class="label">
                     <span class="label-text">Name</span>
                 </label>
-                <input type="text" name="name" class="input input-bordered w-full">
+                <input type="text" name="user_name" class="input input-bordered w-full">
             </div>
 
             <div class="form-control my-4">
-                <label for="email" class="label">
-                    <span class="label-text">Email</span>
+                <label for="user_id" class="label">
+                    <span class="label-text">ID</span>
                 </label>
-                <input type="email" name="email" class="input input-bordered w-full">
+                <input type="text" name="user_id" class="input input-bordered w-full">
             </div>
 
             <div class="form-control my-4">
