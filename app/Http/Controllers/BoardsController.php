@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Board;
 
+use Illuminate\Support\Facades\DB;
+
 class BoardsController extends Controller
 {
     public function index()
@@ -13,7 +15,13 @@ class BoardsController extends Controller
         if (\Auth::check()) {
             $user = \Auth::user();
             
-            $boards = $user->boards()->where('delete_flag', 0)->orderBy('created_at', 'desc')->paginate(10);
+            $boards = DB::table('board')
+                    ->join('users', 'board.user_number', '=', 'users.id')
+                    ->where('board.delete_flag', 0)
+                    ->select('board.*', 'users.user_name')
+                    ->orderBy('board.created_at', 'desc')
+                    ->paginate(5);
+            // $boards = $user->boards()->where('delete_flag', 0)->orderBy('created_at', 'desc')->paginate(10);
             $data = [
                 'user' => $user,
                 'boards' => $boards,
